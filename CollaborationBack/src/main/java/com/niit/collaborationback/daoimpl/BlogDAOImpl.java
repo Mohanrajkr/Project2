@@ -2,6 +2,8 @@ package com.niit.collaborationback.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -53,4 +55,19 @@ public class BlogDAOImpl implements BlogDAO {
 		sessionFactory.getCurrentSession().update(blog);
 		
 	} 
+	  @Transactional
+	    public void insert(Blog blog) {
+	        sessionFactory.getCurrentSession().saveOrUpdate(blog);
+	    }
+	    @Transactional
+	    public List<Blog> getAllBlog(int blogId) {
+	        System.out.println("Retrieve Comment"+blogId);
+	        Session session=(Session) sessionFactory.openSession();
+	        Query query=(Query) session.createQuery("from Blog where blogId=:blogId ");
+	        query.setParameter("blogId", new Integer(blogId));
+	        @SuppressWarnings("unchecked")
+	        List<Blog> blog=((BlogDAO) query).list();
+	        session.close();
+	        return blog;
+	    }
 }

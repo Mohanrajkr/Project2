@@ -13,7 +13,12 @@ import org.springframework.stereotype.Component;
 public class Job {
 	@Id
 	@GeneratedValue
-private int jobId;	
+     private int jobId;
+	
+	private String jobName;
+	private String jobCategory;
+	private String jobDetails;
+	
 public int getJobId() {
 		return jobId;
 	}
@@ -38,7 +43,5 @@ public int getJobId() {
 	public void setJobDetails(String jobDetails) {
 		this.jobDetails = jobDetails;
 	}
-private String jobName;
-private String jobCategory;
-private String jobDetails;
+
 }

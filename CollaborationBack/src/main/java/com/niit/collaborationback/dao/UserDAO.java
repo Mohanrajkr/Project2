@@ -8,19 +8,15 @@ public interface UserDAO {
 
 	public List<User> list();
 
-	public void save(User user);
-
-	public void update(User user);
+	public User saveOrUpdate(User user);
+	public User create(User user);
 
 	public void delete(int userId);
 
 	public User getByUserId(int userId);
 
-	public User getByMail(String mail);
-
-	
+	public User getByMail(String email);
 
 	public User login(User user);
-	
-	
+
 }

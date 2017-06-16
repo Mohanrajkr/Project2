@@ -14,6 +14,10 @@ public class Friend {
 	@Id
 	@GeneratedValue
 	private int friendId;
+	
+	private String status; 
+	private String userId;
+	
 	public int getFriendId() {
 		return friendId;
 	}
@@ -26,12 +30,11 @@ public class Friend {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	private String status; 
-	private String userid;
+	
 }

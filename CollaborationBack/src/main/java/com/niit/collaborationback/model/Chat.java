@@ -14,6 +14,11 @@ public class Chat {
 	@Id
 	@GeneratedValue
 	private int chatId;
+	
+	private String sender;
+	private String receiver;
+	private String message;
+	
 	public int getChatId() {
 		return chatId;
 	}
@@ -38,7 +43,5 @@ public class Chat {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	private String sender;
-	private String receiver;
-	private String message;
+	
 }

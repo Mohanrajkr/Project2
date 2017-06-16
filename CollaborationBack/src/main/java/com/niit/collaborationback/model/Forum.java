@@ -16,6 +16,11 @@ public class Forum {
 	@Id
 	@GeneratedValue
 	private int forumId;
+	
+	private String userName;
+	private String message;
+	private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+	
 	public int getForumId() {
 		return forumId;
 	}
@@ -40,8 +45,6 @@ public class Forum {
 	public void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-	private String userName;
-	private String message;
-	private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+	
 	
 }

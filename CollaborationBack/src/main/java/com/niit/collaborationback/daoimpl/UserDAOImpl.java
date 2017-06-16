@@ -25,22 +25,25 @@ public class UserDAOImpl implements UserDAO{
 	@Transactional
 	public List<User> list() {
 		@SuppressWarnings("unchecked")
-		List<User> listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class)
+		List<User> listUser = (List<User>) 
+		sessionFactory.getCurrentSession().createCriteria(User.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-		return listUser;
-	}
+		return listUser;	
+}
 
 	@Transactional
-	public void save(User user) {
-		sessionFactory.getCurrentSession().save(user);
-
-	}
-
-	@Transactional
-	public void update(User user) {
+	public User saveOrUpdate(User user) {
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
+		return user;
 	}
 
+	@Transactional	
+	public User create(User user) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
+		return user;
+	}
+	
 	@Transactional
 	public void delete(int userId) {
 		User userToDelete = new User();
@@ -50,7 +53,7 @@ public class UserDAOImpl implements UserDAO{
 
 	@Transactional
 	public User getByUserId(int userId) {
-		String hql = "from userinfo where userid ='" + userId + "'";
+		String hql = "from User where userId ='" + userId + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -63,8 +66,8 @@ public class UserDAOImpl implements UserDAO{
 	}  
 
 	@Transactional
-	public User getByMail(String mail) {
-		String hql = "from userinfo where mailid ='" + mail + "'";
+	public User getByMail(String email) {
+		String hql = "from User where email ='" + email + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -81,7 +84,7 @@ public class UserDAOImpl implements UserDAO{
 	public User login(User user) {
 		System.out.println(user.getEmail());
 		System.out.println(user.getPassword());
-		String hql = "from User where mail=" + "'" + user.getEmail() + "'   and password = " + "'"+ user.getPassword() +"'";
+		String hql = "from User where email=" + "'" + user.getEmail() + "'   and password = " + "'"+ user.getPassword() +"'";
 	
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 

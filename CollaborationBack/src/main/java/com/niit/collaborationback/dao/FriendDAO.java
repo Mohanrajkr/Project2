@@ -11,5 +11,5 @@ public interface FriendDAO {
 	public void update(Friend friend);
 	public void delete (int friendId);
 	public Friend getByFid(int friendId);
-	public Friend getByStatus(String Status);
+	public Friend getByStatus(String status);
 }

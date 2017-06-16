@@ -39,7 +39,7 @@ public class UserDAOTestCase {
 		user.setEmail("ram@gmail.com");
 		user.setAddress("Tirupur");
 		user.setRole("hmm");
-		userDAO.save(user);
+		userDAO.saveOrUpdate(user);
 
 	}
 

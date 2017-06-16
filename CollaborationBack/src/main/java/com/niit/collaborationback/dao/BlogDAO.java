@@ -12,4 +12,6 @@ public interface BlogDAO {
 	public void delete (int blogId);
 	public Blog getById(int blogId);
 	public Blog getByTitle(String title);
+	 public void insert(Blog blog);
+	 public List<Blog> getAllBlog(int blogId);
 }

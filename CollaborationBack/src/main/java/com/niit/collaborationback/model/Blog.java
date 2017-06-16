@@ -1,11 +1,14 @@
 package com.niit.collaborationback.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
 
 @Component
 @Entity
@@ -14,6 +17,12 @@ public class Blog {
 	@Id
 	@GeneratedValue
 	private int blogId;
+	
+	private String title;
+	private String description;
+	private Date createDate;
+	private int likes;
+	private String status;
 	
 	
 	public int getBlogId() {
@@ -24,7 +33,7 @@ public class Blog {
 		this.blogId = blogId;
 	}
 
-	private String title;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -49,8 +58,30 @@ public class Blog {
 		this.status = status;
 	}
 
-	private String description;
-	private String status;
+	
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	
+
+	
+
+
+	
 	
 	
 }
