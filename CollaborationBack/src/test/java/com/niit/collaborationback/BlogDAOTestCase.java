@@ -38,7 +38,7 @@ public class BlogDAOTestCase {
 		blog.setTitle("placement session");
 		blog.setDescription("www.indiabixapp.com,www.mathcrack.com");
 	    blog.setStatus("active");
-	    blogDAO.save(blog);
+	    blogDAO.saveOrUpdate(blog);
 
 	}
 

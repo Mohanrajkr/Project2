@@ -2,6 +2,7 @@ package com.niit.collaborationback.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborationback.dao.ChatDAO;
 import com.niit.collaborationback.model.Chat;
+import com.niit.collaborationback.model.User;
 
 @Repository("ChatDAO")
 public class ChatDAOImpl implements ChatDAO{
@@ -18,12 +20,24 @@ public class ChatDAOImpl implements ChatDAO{
 	public ChatDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}  
-	@SuppressWarnings("unchecked")
+	
 	@Transactional
 	public List<Chat> list() {
-		List<Chat> listChat = sessionFactory.getCurrentSession().createQuery("from Chat").list();
+		@SuppressWarnings("unchecked")
+		List<Chat> listChat = (List<Chat>) 
+		sessionFactory.getCurrentSession().createCriteria(Chat.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listChat;
 	}
+	
+	
+	@Transactional	
+	public Chat create(Chat chat) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(chat);
+		return chat;
+	}
+
 	@Transactional
 	public void delete(int chatId) {
 		Chat eventToDelete = new Chat();
@@ -40,13 +54,9 @@ public class ChatDAOImpl implements ChatDAO{
 		return Cid;
 	}
 	@Transactional
-	public void save(Chat chat) {
-		sessionFactory.getCurrentSession().save(chat);
-		
+	public Chat saveOrUpdate(Chat chat) {
+		sessionFactory.getCurrentSession().saveOrUpdate(chat);
+		return chat;
 	}
-	@Transactional
-	public void update(Chat chat) {
-		sessionFactory.getCurrentSession().update(chat);
-		
-	}
+	
 }

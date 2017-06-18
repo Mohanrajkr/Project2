@@ -37,7 +37,7 @@ public class UserController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@GetMapping("/users/{userId}")
+	@GetMapping("/user/{userId}")
 	public ResponseEntity getByUserid(@PathVariable("userId") int userId) {
 
 		User user = userDAO.getByUserId(userId);

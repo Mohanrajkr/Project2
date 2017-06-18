@@ -21,8 +21,8 @@ public class Blog {
 	private String title;
 	private String description;
 	private Date createDate;
-	private int likes;
-	private String status;
+/*	private int likes;
+*/	private String status;
 	
 	
 	public int getBlogId() {
@@ -68,14 +68,14 @@ public class Blog {
 	}
 
 	
-	public int getLikes() {
+	/*public int getLikes() {
 		return likes;
 	}
 
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-
+*/
 	
 
 	

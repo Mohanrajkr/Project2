@@ -4,14 +4,15 @@ import java.util.List;
 
 import com.niit.collaborationback.model.Blog;
 
+
 public interface BlogDAO {
 	public List<Blog>list();
 
-	public void save(Blog blog);
-	public void update(Blog blog);
+	public Blog saveOrUpdate(Blog Blog);
+	public Blog create(Blog Blog);
+
 	public void delete (int blogId);
 	public Blog getById(int blogId);
 	public Blog getByTitle(String title);
-	 public void insert(Blog blog);
-	 public List<Blog> getAllBlog(int blogId);
+	
 }

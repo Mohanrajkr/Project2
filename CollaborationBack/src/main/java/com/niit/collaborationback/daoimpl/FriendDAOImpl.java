@@ -2,6 +2,7 @@ package com.niit.collaborationback.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborationback.dao.FriendDAO;
 import com.niit.collaborationback.model.Friend;
+
 
 @Repository("FriendDAO")
 public class FriendDAOImpl implements FriendDAO {
@@ -18,13 +20,22 @@ public class FriendDAOImpl implements FriendDAO {
 		
 		this.sessionFactory = sessionFactory;
 	}
-	@SuppressWarnings("unchecked")
+
 	@Transactional
 	public List<Friend> list() {
-		List<Friend> listFriend = sessionFactory.getCurrentSession().createQuery("from Friend").list();
+		@SuppressWarnings("unchecked")
+		List<Friend> listFriend = (List<Friend>) 
+		sessionFactory.getCurrentSession().createCriteria(Friend.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listFriend;
 	}
 
+	@Transactional	
+	public Friend create(Friend friend) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(friend);
+		return friend;
+	}
 	
 @Transactional
 	public void delete(int friendId) {
@@ -47,13 +58,9 @@ public Friend getByStatus(String status) {
 
 }
 @Transactional
-public void save(Friend friend) {
-	sessionFactory.getCurrentSession().save(friend);
-	
+public Friend saveOrUpdate(Friend friend) {
+	sessionFactory.getCurrentSession().saveOrUpdate(friend);
+	return friend;
 }
-@Transactional
-public void update(Friend friend) {
-	
-	sessionFactory.getCurrentSession().update(friend);
-}
+
 }

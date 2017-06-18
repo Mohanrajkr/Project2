@@ -15,9 +15,6 @@ public class Chat {
 	@GeneratedValue
 	private int chatId;
 	
-	private String sender;
-	private String receiver;
-	private String message;
 	
 	public int getChatId() {
 		return chatId;
@@ -25,23 +22,6 @@ public class Chat {
 	public void setChatId(int chatId) {
 		this.chatId = chatId;
 	}
-	public String getSender() {
-		return sender;
-	}
-	public void setSender(String sender) {
-		this.sender = sender;
-	}
-	public String getReceiver() {
-		return receiver;
-	}
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
+	
 	
 }

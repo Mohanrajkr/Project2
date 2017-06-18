@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.niit.collaborationback.dao.ChatDAO;
-import com.niit.collaborationback.dao.UserDAO;
 import com.niit.collaborationback.model.Chat;
-import com.niit.collaborationback.model.User;
+
 
 public class ChatDAOTestCase {
 	@Autowired
@@ -35,11 +34,9 @@ public class ChatDAOTestCase {
 	@Test
 	public void createChatTestCase() {
 
-		chat.setSender("Raj");
-		chat.setReceiver("karthi");
-		chat.setMessage("hai hello");
 		
-		chatDAO.save(chat);
+		
+		chatDAO.saveOrUpdate(chat);
 
 	}
 }

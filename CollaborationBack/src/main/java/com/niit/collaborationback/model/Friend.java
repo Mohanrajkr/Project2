@@ -16,7 +16,7 @@ public class Friend {
 	private int friendId;
 	
 	private String status; 
-	private String userId;
+	
 	
 	public int getFriendId() {
 		return friendId;
@@ -30,11 +30,6 @@ public class Friend {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+	
 	
 }

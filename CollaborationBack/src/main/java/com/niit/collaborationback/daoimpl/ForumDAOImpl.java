@@ -2,6 +2,7 @@ package com.niit.collaborationback.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborationback.dao.ForumDAO;
 import com.niit.collaborationback.model.Forum;
+
+
 
 @Repository("ForumDAO")
 public class ForumDAOImpl implements ForumDAO {
@@ -20,9 +23,11 @@ public class ForumDAOImpl implements ForumDAO {
 	}
 
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public List<Forum> list() {
-		List<Forum> listForum = sessionFactory.getCurrentSession().createQuery("from Forum").list();
+		@SuppressWarnings("unchecked")
+		List<Forum> listForum = (List<Forum>) 
+		sessionFactory.getCurrentSession().createCriteria(Forum.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listForum;
 	}
 
@@ -50,13 +55,14 @@ public class ForumDAOImpl implements ForumDAO {
 	}
 
 	@Transactional
-	public void save(Forum forum) {
-		sessionFactory.getCurrentSession().save(forum);
-
+	public Forum saveOrUpdate(Forum forum) {
+		sessionFactory.getCurrentSession().saveOrUpdate(forum);
+          return forum;
 	}
-
-	@Transactional
-	public void update(Forum forum) {
-		sessionFactory.getCurrentSession().update(forum);
+	@Transactional	
+	public Forum create(Forum forum) {
+		sessionFactory.getCurrentSession().saveOrUpdate(forum);
+		return forum;
 	}
+	
 }

@@ -35,7 +35,7 @@ public class FriendDAOTestCase {
 	public void createFriendTestCase() {
 
 		friend.setStatus("friend");
-	   	friendDAO.save(friend);
+	   	friendDAO.saveOrUpdate(friend);
 
 	}
 }

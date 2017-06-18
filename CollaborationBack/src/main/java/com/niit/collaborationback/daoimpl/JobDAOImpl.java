@@ -2,6 +2,7 @@ package com.niit.collaborationback.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborationback.dao.JobDAO;
 import com.niit.collaborationback.model.Job;
+
 
 @Repository("JobDAO")
 public class JobDAOImpl implements JobDAO{
@@ -18,23 +20,27 @@ public class JobDAOImpl implements JobDAO{
 	public JobDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Transactional
 	public List<Job> list() {
-		List<Job> listJob = sessionFactory.getCurrentSession().createQuery("from Job").list();
-		return listJob;
+		@SuppressWarnings("unchecked")
+		List<Job> listJob = (List<Job>) 
+		sessionFactory.getCurrentSession().createCriteria(Job.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		return listJob;	
 	}
 	@Transactional
-	public void save(Job job) {
+	public Job saveOrUpdate(Job job) {
 		sessionFactory.getCurrentSession().save(job);
-
+         return job;
 	}
-	@Transactional
-	public void update(Job job) {
-		sessionFactory.getCurrentSession().update(job);
-
+	
+	@Transactional	
+	public Job create(Job job) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(job);
+		return job;
 	}
-
 	@Transactional
 	public void delete(int jobId) {
 		Job jobToDelete = new Job();

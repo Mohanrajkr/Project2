@@ -37,7 +37,7 @@ public class JobDAOTestCase {
 		job.setJobCategory("software engineer");
 	   	job.setJobDetails("company ntt data, qualification BE, Address coimbatore");
 	   	job.setJobName("software developer");
-	   	jobDAO.save(job);
+	   	jobDAO.saveOrUpdate(job);
 
 	}
 

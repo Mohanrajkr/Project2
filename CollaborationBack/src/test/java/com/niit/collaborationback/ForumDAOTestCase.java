@@ -37,7 +37,7 @@ public class ForumDAOTestCase {
 
 		forum.setUserName("Discussion board");
 	  	forum.setMessage("school system will change");
-	  	forumDAO.save(forum);
+	  	forumDAO.saveOrUpdate(forum);
 
 	}
 
