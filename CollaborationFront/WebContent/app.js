@@ -2,12 +2,19 @@ var app = angular.module("myApp", ['ngRoute']);
 app.config(function($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl : 'User/index.html'
+        templateUrl : 'Home/Home.html'
     })
     .when('/login', {
-        templateUrl : 'User/login.html'
+        templateUrl : 'User/Login.html'
     })
-    .when('/Register', {
+    .when('/register', {
         templateUrl : 'User/Register.html'
-    });
+    })
+    .when('/blog', {
+		templateUrl : 'Blog/Blog.html'
+
+	})
+    .otherwise({
+		resirectTo : '/'
+	});
 });

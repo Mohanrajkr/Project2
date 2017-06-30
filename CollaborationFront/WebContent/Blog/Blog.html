@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<script  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<title>Insert title here</title>
+<style>
+form{
+  margin:10%;
+  max-width: 670px;
+  height:auto;
+}
+input:required:invalid, input:focus:invalid {
+    border:1px solid red;
+  }
+  input:required:valid {
+    border:1px solid green;
+  }
+.warning{
+  color:red;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+<form class="form-horizontal" role="form">
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    Register
+  </div>
+  <div class="panel-body">
+    <div class="form-group has-feedback" id="divName">
+      <label class="control-label col-sm-3" for="id">Name: </label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="id" required>
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9 warning" id="warning1">
+        
+      </div>
+    </div>
+    
+    <div class="form-group has-feedback" id="divEmail">
+      <label class="control-label col-sm-3" for="email">Email: </label>
+      <div class="col-sm-9">
+        <input type="email" class="form-control" id="email" required>
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9 warning" id="warning2">
+        
+      </div>
+    </div>
+    
+    <div class="form-group" id="divPassword">
+      <label class="control-label col-sm-3" for="pwd">Password: </label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" id="pwd" required>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9 warning" id="warning3">
+        
+      </div>
+    </div>
+    
+    <div class="form-group" id="divRePassPassword">
+      <label class="control-label col-sm-3" for="email">Confirm Password: </label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" id="repwd" required>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9 warning" id="warning4">
+        
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Register</button>
+      </div>
+    </div>
+  </div>
+</div>  
+</form>
+<script>
+$(document).ready(function(){
+	  if($('#id').val()===""){
+	    $('#warning1').html("The name field is required.")
+	  }
+	})
+</script>
+</body>
+</html>
