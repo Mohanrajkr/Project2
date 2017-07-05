@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaborationback.dao.ChatDAO;
 import com.niit.collaborationback.model.Chat;
-import com.niit.collaborationback.model.User;
 
 @Repository("ChatDAO")
 public class ChatDAOImpl implements ChatDAO{

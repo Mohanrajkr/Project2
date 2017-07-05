@@ -34,7 +34,9 @@ public class ChatDAOTestCase {
 	@Test
 	public void createChatTestCase() {
 
-		
+		chat.setMessage("hello");
+		chat.setSender("ravi");
+		chat.setReceiver("raja");
 		
 		chatDAO.saveOrUpdate(chat);
 
