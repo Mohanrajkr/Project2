@@ -8,12 +8,22 @@ app.config(function($routeProvider) {
         templateUrl : 'User/Login.html'
     })
     .when('/register', {
-        templateUrl : 'User/Register.html'
+        templateUrl : 'User/Register.html',
+        controller: 'UserController',
+        	controllerAs:'control'
     })
     .when('/blog', {
-		templateUrl : 'Blog/Blog.html'
-
+		templateUrl : 'Blog/Blog.html',
+controller:'BlogController',
+controllerAs:'crtl'
 	})
+	
+	.when('/job', {
+		templateUrl : 'Job/Job.html',
+controller:'JobController',
+controllerAs:'controll'
+	})
+	
     .otherwise({
 		resirectTo : '/'
 	});

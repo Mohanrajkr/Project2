@@ -33,16 +33,16 @@ input:required:invalid, input:focus:invalid {
 </style>
 </head>
 <body>
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" ng-submit="crtl.submit()">
   <div class="panel panel-default">
   <div class="panel-heading">
     Register
   </div>
   <div class="panel-body">
     <div class="form-group has-feedback" id="divName">
-      <label class="control-label col-sm-3" for="id">Name: </label>
+      <label class="control-label col-sm-3" for="title">Title </label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" id="id" required>
+        <input type="text" class="form-control" id="title" ng-model="crtl.blog.title" required >
         <span class="glyphicon glyphicon-ok form-control-feedback"></span>
       </div>
     </div>
@@ -54,9 +54,9 @@ input:required:invalid, input:focus:invalid {
     </div>
     
     <div class="form-group has-feedback" id="divEmail">
-      <label class="control-label col-sm-3" for="email">Email: </label>
+      <label class="control-label col-sm-3" for="description">Description </label>
       <div class="col-sm-9">
-        <input type="email" class="form-control" id="email" required>
+        <input type="text" class="form-control" id="description" ng-model="crtl.blog.description" required>
         <span class="glyphicon glyphicon-ok form-control-feedback"></span>
       </div>
     </div>
@@ -67,35 +67,11 @@ input:required:invalid, input:focus:invalid {
       </div>
     </div>
     
-    <div class="form-group" id="divPassword">
-      <label class="control-label col-sm-3" for="pwd">Password: </label>
-      <div class="col-sm-9">
-        <input type="password" class="form-control" id="pwd" required>
-      </div>
-    </div>
     
-    <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-9 warning" id="warning3">
-        
-      </div>
-    </div>
-    
-    <div class="form-group" id="divRePassPassword">
-      <label class="control-label col-sm-3" for="email">Confirm Password: </label>
-      <div class="col-sm-9">
-        <input type="password" class="form-control" id="repwd" required>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-9 warning" id="warning4">
-        
-      </div>
-    </div>
     
     <div class="form-group">
       <div class="col-sm-offset-3 col-sm-9">
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Register</button>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Submit</button>
       </div>
     </div>
   </div>
