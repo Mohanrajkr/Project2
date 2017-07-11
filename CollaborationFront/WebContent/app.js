@@ -24,6 +24,12 @@ controller:'JobController',
 controllerAs:'controll'
 	})
 	
+	.when('/forum', {
+		templateUrl : 'Forum/Forum.html',
+controller:'ForumController',
+controllerAs:'fc'
+	})
+	
     .otherwise({
 		resirectTo : '/'
 	});

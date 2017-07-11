@@ -1,12 +1,12 @@
 'use strict';
  
-app.service('BlogService', ['$http', '$q', function($http, $q){
-	console.log("BlogService...")
+app.service('ForumService', ['$http', '$q', function($http, $q){
+	console.log("ForumService...")
     var BASE_URL = 'http://localhost:8080/Restfulservices/';
 
 	 var factory = {
 		        fetchAllBlogs: fetchAllBlogs,
-		        createBlog: createBlog,
+		        createForum: createForum,
 		        updateBlog:updateBlog,
 		        AcceptedBlogs : AcceptedBlogs,
 /*				notAcceptedBlogs : notAcceptedBlogs,
@@ -33,13 +33,13 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 						}, null);
 			};
 			
-			function createBlog(Blog) {
-				console.log("calling create Blog")
-				return $http.post(BASE_URL+'/blog', Blog) // 1
+			function createForum(Forum) {
+				console.log("calling create Forum")
+				return $http.post(BASE_URL+'/forum', Forum) // 1
 				.then(function(response) {
 					return response.data;
 				}, function(errResponse) {
-					console.error('Error while creating Blog');
+					console.error('Error while creating Forum');
 					return $q.reject(errResponse);
 				});
 			};

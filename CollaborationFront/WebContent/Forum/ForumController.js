@@ -1,10 +1,10 @@
 'use strict';
-app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScope', '$http',
-	function($scope, $location, BlogService,$rootScope,$http) {
-	console.log("BlogController...")
+app.controller('ForumController',['$scope', '$location', 'ForumService','$rootScope', '$http',
+	function($scope, $location, ForumService,$rootScope,$http) {
+	console.log("ForumController...")
 	
 	var self = this;
-	self.blog = {blogId : '',title : '',description : '',createdate : '',status :''};
+	self.blog = {forumId : '',userName : '',Message : ''};
 	
 	self.blogs = [];
 	self.submit = submit;
@@ -13,8 +13,8 @@ app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScop
     self.reset = reset;
     self.get = get;
     
-    fetchAllBlogs();
-    AcceptedBlogs();
+    fetchAllForums();
+    AcceptedForums();
     reset();*/
     function fetchAllBlogs(){
     	BlogService.fetchAllBlogs()
@@ -38,13 +38,13 @@ app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScop
 							console.error('Error while creating AcceptedBlogs.');
 						});
 	};
-    function createBlog(blog){
-		console.log("createBlog...")
-		BlogService.createBlog(blog).then(function(d) {
+    function createForum(forum){
+		console.log("createForum...")
+		ForumService.createForum(forum).then(function(d) {
 			alert("Thank you for creating message")
 			$location.path("/login")
 		}, function(errResponse) {
-			console.error('Error while creating Blog.');
+			console.error('Error while creating forum.');
 		});
 	};
 
@@ -93,12 +93,12 @@ app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScop
     	
 	}
     function submit() {
-        console.log('Creating New Blog', self.blog);
-           createBlog(self.blog);
+        console.log('Creating New Forum', self.forum);
+           createForum(self.forum);
        
    };
     function reset(){
-    	self.blog = {blogId : '',title : '',description : '',createdate : '',status :''};
+    	self.blog = {forumId : '',userName : '',Message : ''};
 
        //$scope.myform.$setPristine(); //reset Form
     };
