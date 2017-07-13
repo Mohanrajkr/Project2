@@ -2,16 +2,12 @@
  
 app.service('BlogService', ['$http', '$q', function($http, $q){
 	console.log("BlogService...")
-    var BASE_URL = 'http://localhost:8080/Restfulservices/';
+    var BASE_URL = 'http://localhost:8259/Restfulservices/';
 
 	 var factory = {
 		        fetchAllBlogs: fetchAllBlogs,
 		        createBlog: createBlog,
-		        updateBlog:updateBlog,
-		        AcceptedBlogs : AcceptedBlogs,
-/*				notAcceptedBlogs : notAcceptedBlogs,
-				accept: accept,*/
-		        deleteBlog:deleteBlog
+		        
 		    };
 		 
 		    return factory;
@@ -22,16 +18,7 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 					return response.data;
 				}, null);
 			};
-			function AcceptedBlogs() {
-				console.log("calling AcceptedBlogs ")
-
-				return $http.get(BASE_URL + '/acceptedblog').then(
-						function(response) {
-							console.log('response');
-							return response.data;
-							console.log(response)
-						}, null);
-			};
+			
 			
 			function createBlog(Blog) {
 				console.log("calling create Blog")
@@ -45,27 +32,6 @@ app.service('BlogService', ['$http', '$q', function($http, $q){
 			};
 
 		 
-			function updateBlog(Blog) {
-				console.log("calling fetchAllBlogs ")
-				return $http.put(BASE_URL+'/updateBlog/', Blog) // 2
-				.then(function(response) {
-					return response.data;
-				}, function(errResponse) {
-					console.error('Error while updating Blog');
-					return $q.reject(errResponse);
-				});
-			};
-		 
-		    function deleteBlog(id) {
-		    	console.log("Deleting Blog Request");
-				return $http.delete(BASE_URL + '/deleteBlog/'+id).then(function(response){
-						
-					return response.data;
-						},function(errResponse) {
-							console.error('Error while deleting Blog request');
-							return $q.reject(errResponse);
-						});
-		
-			};
+			
 
 }]);

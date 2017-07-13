@@ -6,8 +6,8 @@
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -108,19 +108,34 @@ box-shadow: 0 0 6px 3px rgba(0,0,0,.35); }
  -->        </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#!blog">Blog</a></li>
-            <li><a href="#!job">Job</a></li>
-            <li><a href="#!forum">Forum</a></li>
-            
+                        
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown Example<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Link One</a></li>
-                <li><a href="#">Link Two</a></li>
-                <li><a href="#">Link Three</a></li>
-                <li><a href="#">Link Four</a></li>
+                <li><a href="#!viewblog">View</a></li>
+                <li><a href="#!blog">Add</a></li>
+                
               </ul>
             </li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Job<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">View</a></li>
+                <li><a href="#!job">Add</a></li>
+                
+              </ul>
+            </li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Forum<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">View</a></li>
+                <li><a href="#!forum">Add</a></li>
+                
+              </ul>
+            </li>
+            
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <li><a href="#!register">SignUp</a></li>
