@@ -9,7 +9,7 @@ public interface UserDAO {
 	public List<User> list();
 
 	public User saveOrUpdate(User user);
-	public User create(User user);
+	public void create(User user);
 
 	public void delete(int userId);
 

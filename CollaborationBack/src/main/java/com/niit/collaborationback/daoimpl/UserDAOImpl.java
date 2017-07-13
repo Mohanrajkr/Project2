@@ -38,10 +38,9 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Transactional	
-	public User create(User user) {
+	public void create(User user) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
-		return user;
 	}
 	
 	@Transactional
