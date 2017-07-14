@@ -31,12 +31,28 @@ public class BlogController {
 		this.blogDAO = blogDAO;
 	}
 
-	@GetMapping("/blog")
+	@GetMapping("/blogs")
 	public ResponseEntity<List<Blog>> getBlog() {
 		List<Blog> listblog = blogDAO.list();
 		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
 	}
-	
+	@GetMapping("/acceptedBlog")
+	public ResponseEntity<List<Blog>> acceptedBlogsList() {
+		List<Blog> listblog = blogDAO.getAcceptedList();
+		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
+	}
+	@GetMapping("/notAcceptedblog")
+	public ResponseEntity<List<Blog>> notAcceptedBlogList() {
+		List<Blog> listblog = blogDAO.getNotAcceptedList();
+		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PutMapping("/acceptBlog")
+	public ResponseEntity acceptBlog(@RequestBody Blog blog){
+		blog.setStatus("A");
+		 blogDAO.saveOrUpdate(blog);
+		return new ResponseEntity(blog, HttpStatus.OK);
+	}
 	@SuppressWarnings("unchecked")
 	@GetMapping("/blog/{blogId}")
 	public ResponseEntity getByBlogid(@PathVariable("blogId") int blogId) {
