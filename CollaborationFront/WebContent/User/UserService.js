@@ -4,7 +4,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
 	
 	console.log("UserService...")
 	
-    var BASE_URL = 'http://localhost:8259/Restfulservices';
+    var BASE_URL = 'http://localhost:8080/Restfulservices/';
 	 return {
 		 
 		 createUser: function(user){
