@@ -34,12 +34,24 @@ app.config(function($routeProvider) {
 		controllerAs : 'controll'
 	})
 
+	.when('/viewjob', {
+		templateUrl : 'Job/ViewJob.html',
+		controller : 'JobController',
+		controllerAs : 'controll'
+	})
+	
 	.when('/forum', {
 		templateUrl : 'Forum/Forum.html',
 		controller : 'ForumController',
 		controllerAs : 'fc'
 	})
 
+	.when('/viewforum', {
+		templateUrl : 'Forum/ViewForum.html',
+		controller : 'ForumController',
+		controllerAs : 'fc'
+	})
+	
 	.otherwise({
 		redirectTo : '/login'
 	});

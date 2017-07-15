@@ -1,41 +1,51 @@
 'use strict';
  
-app.service('ForumService', ['$http', '$q', function($http, $q){
+app.service('ForumService', ['$http', '$q','$rootScope', function($http, $q, $rootScope){
 	console.log("ForumService...")
     var BASE_URL = 'http://localhost:8080/Restfulservices/';
 
 	 var factory = {
-		        fetchAllBlogs: fetchAllBlogs,
+		        fetchAllForums: fetchAllForums,
 		        createForum: createForum,
-		        updateBlog:updateBlog,
-		        AcceptedBlogs : AcceptedBlogs,
-/*				notAcceptedBlogs : notAcceptedBlogs,
-				accept: accept,*/
-		        deleteBlog:deleteBlog
+		        updateForum:updateForum,
+		        AcceptedForums : AcceptedForums,
+				notAcceptedForums : notAcceptedForums,
+				accept: accept,
+		        deleteForum:deleteForum
 		    };
 		 
 		    return factory;
 		 
-		    function fetchAllBlogs() {
-				console.log("calling fetchAllblogs ")
-				return $http.get(BASE_URL+'/Blog').then(function(response) {
+		    function fetchAllForums() {
+				console.log("calling fetchAllforums ")
+				return $http.get(BASE_URL+'/forum').then(function(response) {
 					return response.data;
 				}, null);
 			};
-			function AcceptedBlogs() {
-				console.log("calling AcceptedBlogs ")
+			function AcceptedForums() {
+				console.log("calling AcceptedForums ")
 
-				return $http.get(BASE_URL + '/acceptedblog').then(
+				return $http.get(BASE_URL + '/acceptedForum').then(
 						function(response) {
 							console.log('response');
 							return response.data;
 							console.log(response)
 						}, null);
 			};
+			function notAcceptedForums() {
+				console.log("calling notAcceptedForums ")
+
+				return $http.get(BASE_URL +'/notAcceptedforum').then(
+						function(response) {
+							console.log(response)
+							return response.data;
+
+						}, null);
+			};
 			
 			function createForum(Forum) {
 				console.log("calling create Forum")
-				return $http.post(BASE_URL+'/forum', Forum) // 1
+				return $http.post(BASE_URL+'/insertForum', Forum) // 1
 				.then(function(response) {
 					return response.data;
 				}, function(errResponse) {
@@ -45,24 +55,33 @@ app.service('ForumService', ['$http', '$q', function($http, $q){
 			};
 
 		 
-			function updateBlog(Blog) {
-				console.log("calling fetchAllBlogs ")
-				return $http.put(BASE_URL+'/updateBlog/', Blog) // 2
+			function updateForum(Forum) {
+				console.log("calling fetchAllForums ")
+				return $http.put(BASE_URL+'/updateForum/', Forum) 
 				.then(function(response) {
 					return response.data;
 				}, function(errResponse) {
-					console.error('Error while updating Blog');
+					console.error('Error while updating Forum');
 					return $q.reject(errResponse);
 				});
 			};
-		 
-		    function deleteBlog(id) {
-		    	console.log("Deleting Blog Request");
-				return $http.delete(BASE_URL + '/deleteBlog/'+id).then(function(response){
+			function accept(Forum) {
+				console.log("calling accept Forums ")
+				return $http.put(BASE_URL +'/acceptForum', Forum) 
+				.then(function(response) {
+					return response.data;
+				}, function(errResponse) {
+					console.error('Error while accepting Forum');
+					return $q.reject(errResponse);
+				});
+			};
+		    function deleteForum(id) {
+		    	console.log("Deleting Forum Request");
+				return $http.delete(BASE_URL + '/deleteForum/'+id).then(function(response){
 						
 					return response.data;
 						},function(errResponse) {
-							console.error('Error while deleting Blog request');
+							console.error('Error while deleting Forum request');
 							return $q.reject(errResponse);
 						});
 		

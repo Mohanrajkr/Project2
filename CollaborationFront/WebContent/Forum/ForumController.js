@@ -1,57 +1,74 @@
 'use strict';
-app.controller('ForumController',['$scope', '$location', 'ForumService','$rootScope', '$http',
-	function($scope, $location, ForumService,$rootScope,$http) {
+app.controller('ForumController',['$scope', '$location', 'ForumService','$rootScope','$cookieStore', '$http',
+	function($scope, $location, ForumService,$rootScope,$cookieStore,$http) {
 	console.log("ForumController...")
 	
 	var self = this;
-	self.blog = {forumId : '',userName : '',Message : ''};
+	self.forum = {forumId : '',userName : '',Message : ''};
 	
-	self.blogs = [];
+	self.forums = [];
 	self.submit = submit;
-    /*self.edit = edit;
-    self.remove = remove;
-    self.reset = reset;
+   
     self.get = get;
+   
+    self.AcceptedForums = AcceptedForums;
+    self.notAcceptedForums = notAcceptedForums;
+    self.adminGet = adminGet;
+    self.accept = accept;
+    self.rejectForum = rejectForum;
     
     fetchAllForums();
-    AcceptedForums();
-    reset();*/
-    function fetchAllBlogs(){
-    	BlogService.fetchAllBlogs()
-            .then(
-            function(d) {
-                self.blogs = d;
+   // AcceptedForums();
+    reset();
+   
+    function fetchAllForums(){
+    	ForumService.fetchAllForums().then(function(d) {
+                self.forums = d;
             },
             function(errResponse){
-                console.error('Error while fetching Blogs');
+                console.error('Error while fetching Forums');
             }
         );
     }
-    function AcceptedBlogs() {
-		console.log("AcceptedBlogs...")
-		BlogService.AcceptedBlogs().then(function(d) {
-							//alert("Thank you for creating message")
+    
+    function AcceptedForums() {
+		console.log("AcceptedForums...")
+		ForumService.AcceptedForums().then(function(d) {
+							
 			console.log(d)
-							self.blogsAccept = d;
+							self.forumsAccept = d;
 						},
 						function(errResponse) {
-							console.error('Error while creating AcceptedBlogs.');
+							console.error('Error while creating AcceptedForums.');
 						});
 	};
-    function createForum(forum){
+	function notAcceptedForums() {
+		console.log("notAcceptedForums...")
+		ForumService.notAcceptedForums().then(function(d) {
+							
+			console.log(d)
+							self.forumsNotAccepted = d;
+							console.log(self.forumsNotAccepted)
+						},
+						function(errResponse) {
+							console.error('Error while creating notAcceptedForums.');
+						});
+	};
+    
+    function createForum(Forum){
 		console.log("createForum...")
 		ForumService.createForum(forum).then(function(d) {
 			alert("Thank you for creating message")
 			$location.path("/login")
 		}, function(errResponse) {
-			console.error('Error while creating forum.');
+			console.error('Error while creating Forum.');
 		});
 	};
 
-    function deleteblog(id){
-    	BlogService.deleteBlog(id)
+	function deleteforum(id){
+    	ForumService.deleteForum(id)
             .then(
-            		fetchAllBlogs,
+            		fetchAllForums,
             function(errResponse){
                 console.error('Error while deleting jobs');
             }
@@ -60,17 +77,17 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
     
     function edit(id){
         console.log('id to be edited', id);
-        for(var i = 0; i < self.blogs.length; i++){
-            if(self.blogs[i].blogid === id) {
-                self.blog = angular.copy(self.blogs[i]);
+        for(var i = 0; i < self.forums.length; i++){
+            if(self.forums[i].forumid === id) {
+                self.forum = angular.copy(self.forums[i]);
                 break;
             }
         }
     }
-    function updateBlog(blog, id){
-    	BlogService.updateBlog(blog, id)
+    function updateForum(forum, id){
+    	ForumService.updateForum(forum, id)
             .then(
-            		fetchAllBlogs,
+            		fetchAllForums,
             function(errResponse){
                 console.error('Error while updating jobs');
             }
@@ -79,31 +96,56 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
  
     function remove(id){
         console.log('id to be deleted', id);
-        if(self.blog.blogid === id) {//clean form if the user to be deleted is shown there.
+        if(self.forum.forumid === id) {//clean form if the user to be deleted is shown there.
             reset();
         }
-        deleteblog(id);
+        deleteforum(id);
     }
- 
-    function get(blog) {
-    	$scope.bc=blog;
+    function accept(ViewForums) {
+		{
+			console.log('accept the Forum details')
+				
+			ForumService.accept(ViewForums);
+			console.log(ViewForums)
+			$location.path("/admin")
+		}
+		
+	};
+	function rejectForum(ViewForums){
+    	ForumService.deleteForumRequest(viewForums.forumid).then(function(d) {
+			self.deleteForumRequestId = d;		    			
+			console.log(self.deleteForumRequestId);
+    			$location.path("/admin")
+    	}, function(errResponse){
+                console.error('Error while deleting ForumRequest');
+            });
+    };
+    function get(forum) {
+    	$scope.bc=forum;
 		console.log($scope.bc);
-		$rootScope.blog=$scope.bc;
-		$location.path("viewBlog");
+		$rootScope.forum=$scope.crtl;
+		$location.path("/ViewForum");
     	
 	}
+    function adminGet(forums){
+		$scope.bvv=forums;
+		console.log($scope.bvv);
+		$rootScope.ViewForums=$scope.bvv;
+		$location.path("/adminForum");
+	}
+    
     function submit() {
         console.log('Creating New Forum', self.forum);
            createForum(self.forum);
        
    };
-    function reset(){
-    	self.blog = {forumId : '',userName : '',Message : ''};
+   
+   function reset(){
+		self.forum = {forumId : '',userName : '',Message : ''};
 
-       //$scope.myform.$setPristine(); //reset Form
-    };
-    
-    
+      //$scope.myform.$setPristine(); //reset Form
+   };
+   
     
 	
 }]);

@@ -98,7 +98,7 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
         }
         ,
         getAllJobs: function(){
-            return $http.get(BASE_URL+'/getAllJobs/')
+            return $http.get(BASE_URL+'/job/')
                     .then(
                             function(response){
                                 return response.data;

@@ -5,12 +5,7 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 							console.log("JobController...")
 							var self = this;
 
-							this.job = {
-								jobId : '',
-								jobName : '',
-								jobCategory : '',
-								jobDetails: ''
-							};
+							this.job = {jobId : '',jobName : '',jobCategory : '',jobDetails: ''};
 							this.jobs = [];
 							
 							this.applyForJob = applyForJob
@@ -164,12 +159,8 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 
 							self.reset = function() {
 								console.log('resetting the Job');
-								self.job = {
-										jobId : '',
-										jobName : '',
-										jobCategory : '',
-										jobDetails: ''
-									};
+								self.job = {jobId : '',jobName : '',jobCategory : '',jobDetails: ''};
+
 								//$scope.myForm.$setPristine(); // reset Form
 							};
 
