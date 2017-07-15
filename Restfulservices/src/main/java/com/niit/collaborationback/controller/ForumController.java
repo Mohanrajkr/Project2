@@ -37,6 +37,17 @@ public class ForumController {
 		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
 	}
 	
+	@GetMapping("/acceptedForum")
+	public ResponseEntity<List<Forum>> acceptedForumsList() {
+		List<Forum> listforum = forumDAO.getAcceptedList();
+		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
+	@GetMapping("/notAcceptedforum")
+	public ResponseEntity<List<Forum>> notAcceptedForumList() {
+		List<Forum> listforum = forumDAO.getNotAcceptedList();
+		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/forum/{forumId}")
 	public ResponseEntity getByForumid(@PathVariable("forumId") int forumId) {
