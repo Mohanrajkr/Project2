@@ -3,6 +3,7 @@ package com.niit.collaborationback.daoimpl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -65,4 +66,28 @@ public class ForumDAOImpl implements ForumDAO {
 		return forum;
 	}
 	
+	
+	@Transactional
+	public List<Forum> getAcceptedList() {
+		// TODO Auto-generated method stub
+		String hql = "from Forum where status = " + "'A'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Forum> list = (List<Forum>) query.list();
+		
+		return list;
+	}
+
+	@Transactional
+	public List<Forum> getNotAcceptedList() {
+		// TODO Auto-generated method stub
+		String hql = "from Forum where status = " + "'NA'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Forum> list = (List<Forum>) query.list();
+		
+		return list;
+
+	}
+
 }

@@ -14,4 +14,7 @@ public interface ForumDAO {
 	public void delete (int forumId);
 	public Forum getByForumId(int forumId);
 	public Forum getBynName(String userName);
+	public List<Forum> getAcceptedList();
+	
+	public List<Forum> getNotAcceptedList();
 }
