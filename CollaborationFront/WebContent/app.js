@@ -15,6 +15,22 @@ app.config(function($routeProvider) {
 		controllerAs : 'control'
 	})
 	
+	.when('/admin', {
+		templateUrl : 'Admin/AdminHome.html'
+
+	})
+	.when('/adminblog', {
+		templateUrl : 'Admin/BlogDetails.html',
+		controller : 'BlogController',
+		controllerAs : 'bc'
+	})
+	
+	.when('/adminforum', {
+		templateUrl : 'Admin/ForumDetails.html',
+		controller : 'ForumController',
+		controllerAs : 'fcc'
+	})
+	
 	.when('/blog', {
 		templateUrl : 'Blog/Blog.html',
 		controller : 'BlogController',
@@ -23,6 +39,13 @@ app.config(function($routeProvider) {
 
 	.when('/viewblog', {
 		templateUrl : 'Blog/ViewBlog.html',
+		controller : 'BlogController',
+		controllerAs : 'crtl'
+
+	})
+	
+	.when('/viewblogdetails', {
+		templateUrl : 'Blog/ViewDetails.html',
 		controller : 'BlogController',
 		controllerAs : 'crtl'
 

@@ -4,7 +4,7 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
 	console.log("ForumController...")
 	
 	var self = this;
-	self.forum = {forumId : '',userName : '',Message : ''};
+	self.forum = {forumId : '',forumName:'',forumContent:'',userId:'',createDate:'',status:''};
 	
 	self.forums = [];
 	self.submit = submit;
@@ -18,7 +18,7 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
     self.rejectForum = rejectForum;
     
     fetchAllForums();
-   // AcceptedForums();
+    AcceptedForums();
     reset();
    
     function fetchAllForums(){
@@ -57,7 +57,7 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
     
     function createForum(Forum){
 		console.log("createForum...")
-		ForumService.createForum(forum).then(function(d) {
+		ForumService.createForum(Forum).then(function(d) {
 			alert("Thank you for creating message")
 			$location.path("/login")
 		}, function(errResponse) {
@@ -141,7 +141,7 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
    };
    
    function reset(){
-		self.forum = {forumId : '',userName : '',Message : ''};
+		self.forum = {forumId : '',forumName:'',forumContent:'',userId:'',createDate:'',status:''};
 
       //$scope.myform.$setPristine(); //reset Form
    };

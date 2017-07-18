@@ -45,7 +45,7 @@ app.service('ForumService', ['$http', '$q','$rootScope', function($http, $q, $ro
 			
 			function createForum(Forum) {
 				console.log("calling create Forum")
-				return $http.post(BASE_URL+'/insertForum', Forum) // 1
+				return $http.post(BASE_URL+'/forum', Forum) // 1
 				.then(function(response) {
 					return response.data;
 				}, function(errResponse) {

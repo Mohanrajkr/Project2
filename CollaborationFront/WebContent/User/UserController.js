@@ -29,7 +29,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 									
 									
 							
-									$location.path('/blog');
+									$location.path('/admin');
 								}, function(response) {
 									console.log(response.status)
 									$scope.message = response.data.message
