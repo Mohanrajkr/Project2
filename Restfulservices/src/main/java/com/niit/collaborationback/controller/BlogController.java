@@ -18,6 +18,8 @@ import com.niit.collaborationback.model.Blog;
 
 
 
+
+
 @RestController
 public class BlogController {
 	@Autowired
@@ -31,7 +33,7 @@ public class BlogController {
 		this.blogDAO = blogDAO;
 	}
 
-	@GetMapping("/blogs")
+	@GetMapping("/getblog")
 	public ResponseEntity<List<Blog>> getBlog() {
 		List<Blog> listblog = blogDAO.list();
 		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
