@@ -61,9 +61,9 @@ public class ForumDAOImpl implements ForumDAO {
           return forum;
 	}
 	@Transactional	
-	public Forum create(Forum forum) {
+	public void create(Forum forum) {
 		sessionFactory.getCurrentSession().saveOrUpdate(forum);
-		return forum;
+		
 	}
 	
 	

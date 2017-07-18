@@ -9,7 +9,7 @@ public interface ForumDAO {
 	public List<Forum>list();
 
 	public Forum saveOrUpdate(Forum forum);
-	public Forum create(Forum forum);
+	public void create(Forum forum);
 
 	public void delete (int forumId);
 	public Forum getByForumId(int forumId);

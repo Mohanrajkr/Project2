@@ -1,7 +1,7 @@
 package com.niit.collaborationback.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,34 +17,49 @@ public class Forum {
 	@GeneratedValue
 	private int forumId;
 	
-	private String userName;
-	private String message;
-	private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 	
+	private String forumContent;
+	private int userId;
+	private Date createDate;
+	private String status;
+	private String forumName;
+
 	public int getForumId() {
 		return forumId;
 	}
 	public void setForumId(int forumId) {
 		this.forumId = forumId;
 	}
-	public String getUserName() {
-		return userName;
+	public String getForumContent() {
+		return forumContent;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setForumContent(String forumContent) {
+		this.forumContent = forumContent;
 	}
-	public String getMessage() {
-		return message;
+	public int getUserId() {
+		return userId;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public String getTimeStamp() {
-		return timeStamp;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getForumName() {
+		return forumName;
+	}
+	public void setForumName(String forumName) {
+		this.forumName = forumName;
+	}
+		
 	
 }
