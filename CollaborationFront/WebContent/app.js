@@ -31,6 +31,12 @@ app.config(function($routeProvider) {
 		controllerAs : 'fcc'
 	})
 	
+	.when('/adminforum', {
+		templateUrl : 'Admin/JobDetails.html',
+		controller : 'JobController',
+		controllerAs : 'jc'
+	})
+	
 	.when('/blog', {
 		templateUrl : 'Blog/Blog.html',
 		controller : 'BlogController',

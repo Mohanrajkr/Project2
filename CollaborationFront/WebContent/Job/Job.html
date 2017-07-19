@@ -62,15 +62,22 @@ button {
 
 <form  style="border:1px solid #ccc" ng-submit="controll.submit()">
   <div class="container">
-    <label><b>JobName</b></label>
-    <input type="text" placeholder="Enter JobName" name="jobName" ng-model="controll.job.jobName" required>
+    <label><b>Title</b></label>
+    <input type="text" placeholder="Enter title" name="title" ng-model="controll.job.title" required>
 
-    <label><b>JobCategory</b></label>
-    <input type="text" placeholder="Enter JobCategory" name="jobCategory" ng-model="controll.job.jobCategory" required>
+    <label><b>CompanyName</b></label>
+    <input type="text" placeholder="Enter companyName" name="companyName" ng-model="controll.job.companyName" required>
 
-    <label><b>Details</b></label>
-    <input type="text" placeholder="Repeat Details" name="jobDetails" ng-model="controll.job.jobDetails" required>
+<label><b>Qualification</b></label>
+    <input type="text" placeholder="Enter qualification" name="qualification" ng-model="controll.job.qualification" required>
     
+    <label><b>Email</b></label>
+    <input type="text" placeholder="Enter email" name="email" ng-model="controll.job.email" required>
+    
+    <label><b>Status</b></label>
+    <input type="text" placeholder="Enter status" name="status" ng-model="controll.job.status" required>
+    
+   
     <div class="clearfix">
      
       <button type="submit" class="signupbtn">Add</button>
