@@ -34,9 +34,11 @@ public class JobDAOTestCase {
 	@Test
 	public void createJobTestCase() {
 
-		job.setJobCategory("software engineer");
-	   	job.setJobDetails("company ntt data, qualification BE, Address coimbatore");
-	   	job.setJobName("software developer");
+		job.setTitle("software engineer");
+		job.setCompanyName("codedrop");
+		job.setQualification("B.Tech");
+		job.setEmail("moh@gmail.com");
+		job.setStatus("required");
 	   	jobDAO.saveOrUpdate(job);
 
 	}

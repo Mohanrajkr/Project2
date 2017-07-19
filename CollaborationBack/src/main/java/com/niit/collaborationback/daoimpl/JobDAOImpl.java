@@ -54,8 +54,8 @@ public class JobDAOImpl implements JobDAO{
 		return JobId;
 	}
 	@Transactional
-	public Job getByJobcategory(String jobCategory) {
-		Job JobCategory = (Job) sessionFactory.getCurrentSession().get(Job.class, jobCategory);
+	public Job getByJobcategory(String companyName) {
+		Job JobCategory = (Job) sessionFactory.getCurrentSession().get(Job.class, companyName);
 
 		return JobCategory;
 	}

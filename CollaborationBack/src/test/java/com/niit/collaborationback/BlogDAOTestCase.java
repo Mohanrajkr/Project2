@@ -27,7 +27,7 @@ public class BlogDAOTestCase {
 		context.refresh();
 
 		
-		blogDAO = (BlogDAO) context.getBean("BlogDAO");
+		blogDAO = (BlogDAO) context.getBean("blogDAO");
 
 		blog = (Blog) context.getBean("blog");
 	}

@@ -13,5 +13,5 @@ public interface JobDAO {
 
 	public void delete (int jobId);
 	public Job getByJobid(int jobId);
-	public Job getByJobcategory(String jobCategory);
+	public Job getByJobcategory(String companyName);
 }

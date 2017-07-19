@@ -95,7 +95,7 @@ public class ApplicationContextConfig {
 	}
 	
 	@Autowired(required = true)
-	@Bean(name = "BlogDAO")
+	@Bean(name = "blogDAO")
 	public BlogDAO getBlogDAO(SessionFactory sessionFactory) {
 		return new BlogDAOImpl(sessionFactory);
 	}
