@@ -47,6 +47,13 @@ public class ForumController {
 		List<Forum> listforum = forumDAO.getNotAcceptedList();
 		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
 	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PutMapping("/acceptForum")
+	public ResponseEntity acceptForum(@RequestBody Forum forum){
+		forum.setStatus("A");
+		 forumDAO.saveOrUpdate(forum);
+		return new ResponseEntity(forum, HttpStatus.OK);
+	}
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/forum/{forumId}")
