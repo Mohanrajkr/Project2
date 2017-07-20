@@ -19,23 +19,19 @@ app.config(function($routeProvider) {
 		templateUrl : 'Admin/AdminHome.html'
 
 	})
-	.when('/adminblog', {
+	.when('/adminBlog', {
 		templateUrl : 'Admin/BlogDetails.html',
 		controller : 'BlogController',
 		controllerAs : 'bc'
 	})
 	
-	.when('/adminforum', {
+	.when('/adminForum', {
 		templateUrl : 'Admin/ForumDetails.html',
 		controller : 'ForumController',
 		controllerAs : 'fcc'
 	})
 	
-	.when('/adminforum', {
-		templateUrl : 'Admin/JobDetails.html',
-		controller : 'JobController',
-		controllerAs : 'jc'
-	})
+	
 	
 	.when('/blog', {
 		templateUrl : 'Blog/Blog.html',

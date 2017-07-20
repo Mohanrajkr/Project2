@@ -112,7 +112,7 @@ app.controller('ForumController',['$scope', '$location', 'ForumService','$rootSc
 		
 	};
 	function rejectForum(ViewForums){
-    	ForumService.deleteForumRequest(viewForums.forumid).then(function(d) {
+    	ForumService.deleteForum(ViewForums.forumId).then(function(d) {
 			self.deleteForumRequestId = d;		    			
 			console.log(self.deleteForumRequestId);
     			$location.path("/admin")

@@ -75,9 +75,9 @@ app.service('ForumService', ['$http', '$q','$rootScope', function($http, $q, $ro
 					return $q.reject(errResponse);
 				});
 			};
-		    function deleteForum(id) {
+		    function deleteForum(forumId) {
 		    	console.log("Deleting Forum Request");
-				return $http.delete(BASE_URL + '/deleteForum/'+id).then(function(response){
+				return $http.delete(BASE_URL + '/forum/'+forumId).then(function(response){
 						
 					return response.data;
 						},function(errResponse) {
