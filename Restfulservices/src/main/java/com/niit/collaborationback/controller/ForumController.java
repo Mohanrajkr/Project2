@@ -1,6 +1,9 @@
 package com.niit.collaborationback.controller;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationback.dao.ForumDAO;
 import com.niit.collaborationback.model.Forum;
+import com.niit.collaborationback.model.User;
 
 
 @RestController
@@ -69,11 +73,17 @@ public class ForumController {
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/forum")
-	public ResponseEntity createForum(@RequestBody Forum forum) {
+	public ResponseEntity createForum(@RequestBody Forum forum,HttpSession session) {
 
-		forumDAO.create(forum);
-
-		return new ResponseEntity(forum, HttpStatus.OK);
+		forum.setCreateDate(new Date());
+		forum.setStatus("NA");
+		
+		User user = (User) session.getAttribute("user");   
+		System.out.println(forum.getForumName());
+		forum.setUserId(user.getUserId());
+		forum.setUserName(user.getUserName());
+		forumDAO.saveOrUpdate(forum);
+		return new ResponseEntity(forum,HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("unchecked")

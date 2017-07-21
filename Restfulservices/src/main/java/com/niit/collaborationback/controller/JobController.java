@@ -1,6 +1,9 @@
 package com.niit.collaborationback.controller;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationback.dao.JobDAO;
 import com.niit.collaborationback.model.Job;
+import com.niit.collaborationback.model.User;
 
 
 
@@ -54,11 +58,17 @@ public class JobController {
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/job")
-	public ResponseEntity createJob(@RequestBody Job job) {
+	public ResponseEntity createJob(@RequestBody Job job,HttpSession session) {
 
-		jobDAO.create(job);
-
-		return new ResponseEntity(job, HttpStatus.OK);
+		job.setPostDate(new Date());
+		job.setStatus("NA");
+		
+		User user = (User) session.getAttribute("user");   
+		System.out.println(job.getTitle());
+		job.setUserId(user.getUserId());
+		job.setUserName(user.getUserName());
+		jobDAO.saveOrUpdate(job);
+		return new ResponseEntity(job,HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("unchecked")

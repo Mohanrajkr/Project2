@@ -1,6 +1,9 @@
 package com.niit.collaborationback.controller;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationback.dao.BlogDAO;
 import com.niit.collaborationback.model.Blog;
+import com.niit.collaborationback.model.User;
 
 
 
@@ -69,11 +73,17 @@ public class BlogController {
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/blog")
-	public ResponseEntity createBlog(@RequestBody Blog blog) {
+	public ResponseEntity createBlog(@RequestBody Blog blog,HttpSession session) {
 
-		blogDAO.create(blog);
-
-		return new ResponseEntity(blog, HttpStatus.OK);
+		blog.setCreateDate(new Date());
+		blog.setStatus("NA");
+		
+		User user = (User) session.getAttribute("user");   
+		System.out.println(blog.getTitle());
+		blog.setUserId(user.getUserId());
+		blog.setUserName(user.getUserName());
+		blogDAO.saveOrUpdate(blog);
+		return new ResponseEntity(blog,HttpStatus.OK);
 	}
 	
 	@SuppressWarnings("unchecked")
