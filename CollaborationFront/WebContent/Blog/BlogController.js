@@ -4,7 +4,7 @@ app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScop
 	console.log("BlogController...")
 	
 	var self = this;
-	self.blog = {blogId : '',title : '',description : '',createDate : '',status :''};
+	self.blog = {blogId : '',title : '',description : '',createDate : '',status :'',userId:'',userName:'',email:''};
 	
 	self.blogs = [];
 	self.submit = submit;
@@ -141,7 +141,7 @@ app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScop
    };
    
    function reset(){
-		self.blog = {blogId : '',title : '',description : '',createDate : '',status :''};
+		self.blog = {blogId : '',title : '',description : '',createDate : '',status :'',userId:'',userName:'',email:''};
 
       //$scope.myform.$setPristine(); //reset Form
    };

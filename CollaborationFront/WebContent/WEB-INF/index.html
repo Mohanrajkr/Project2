@@ -89,7 +89,7 @@ box-shadow: 0 0 6px 3px rgba(0,0,0,.35); }
 }
 </style>
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="UserController as uc">
 <div class="container">
 <h2>This is just a small snipp</h2>
 <hr>
@@ -138,8 +138,11 @@ box-shadow: 0 0 6px 3px rgba(0,0,0,.35); }
             
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="#!register">SignUp</a></li>
-              <li><a href="#!login">Login</a></li>
+              <li><a href="#!register" ng-hide="currentUser.userName">SignUp</a></li>
+              <li><a href="#!login" ng-hide="currentUser.userName">Login</a></li>
+              <li><a href="#" ng-click="uc.logout()" ng-show="currentUser.userName">
+					<span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+              
           </ul>
         </div>
       </div>

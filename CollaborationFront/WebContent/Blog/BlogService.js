@@ -47,8 +47,7 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q, $roo
 			
 			function createBlog(Blog) {
 				console.log("calling create Blog")
-				return $http.post(BASE_URL+'/blog', Blog) // 1
-				.then(function(response) {
+				return $http.post(BASE_URL+'/blog', Blog).then(function(response) {
 					return response.data;
 				}, function(errResponse) {
 					console.error('Error while creating Blog');

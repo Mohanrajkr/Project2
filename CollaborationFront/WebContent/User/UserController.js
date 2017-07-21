@@ -8,7 +8,8 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							self.userLoggedIn = "";
 
-							
+							self.currentUser = {userId : '',userName : '',email :'',password : '',mobileNumber : '',address : '',role : ''};
+
 							self.createUser = function(user) {
 								console.log("createUser...")
 								UserService.createUser(user).then(function(d) {
@@ -45,4 +46,13 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								self.reset();
 							};
 
+							self.logout = function() {
+								console.log("logout")
+								self.userLoggedIn = "false"
+								$rootScope.currentUser = {};
+								$cookieStore.remove('currentUser');
+								UserService.logout()
+								$location.path('/login');
+
+							};
 						} ]);
