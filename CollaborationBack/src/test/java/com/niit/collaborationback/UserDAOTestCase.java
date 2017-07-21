@@ -32,7 +32,7 @@ public class UserDAOTestCase {
 	}
 
 	@Test
-	public void createUserTestCase() {
+	public void createUserDAOTestCase() {
 
 		user.setUserName("Ram");
 		user.setPassword("45");

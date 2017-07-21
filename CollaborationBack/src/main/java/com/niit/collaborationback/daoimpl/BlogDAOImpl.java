@@ -37,9 +37,8 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Transactional	
-	public Blog create(Blog blog) {
+	public void create(Blog blog) {
 		sessionFactory.getCurrentSession().saveOrUpdate(blog);
-		return blog;
 	}
 	@Transactional
 	public void delete(int blogId) {

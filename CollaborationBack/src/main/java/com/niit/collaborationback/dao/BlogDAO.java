@@ -9,7 +9,7 @@ public interface BlogDAO {
 	public List<Blog>list();
 
 	public Blog saveOrUpdate(Blog Blog);
-	public Blog create(Blog Blog);
+	public void create(Blog Blog);
 
 	public void delete (int blogId);
 	public Blog getById(int blogId);

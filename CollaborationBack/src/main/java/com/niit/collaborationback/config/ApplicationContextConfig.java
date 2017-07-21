@@ -14,18 +14,21 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.collaborationback.dao.AppliedJobsDAO;
 import com.niit.collaborationback.dao.BlogDAO;
 import com.niit.collaborationback.dao.ChatDAO;
 import com.niit.collaborationback.dao.ForumDAO;
 import com.niit.collaborationback.dao.FriendDAO;
 import com.niit.collaborationback.dao.JobDAO;
 import com.niit.collaborationback.dao.UserDAO;
+import com.niit.collaborationback.daoimpl.AppliedJobsDAOImpl;
 import com.niit.collaborationback.daoimpl.BlogDAOImpl;
 import com.niit.collaborationback.daoimpl.ChatDAOImpl;
 import com.niit.collaborationback.daoimpl.ForumDAOImpl;
 import com.niit.collaborationback.daoimpl.FriendDAOImpl;
 import com.niit.collaborationback.daoimpl.JobDAOImpl;
 import com.niit.collaborationback.daoimpl.UserDAOImpl;
+import com.niit.collaborationback.model.AppliedJobs;
 import com.niit.collaborationback.model.Blog;
 import com.niit.collaborationback.model.Chat;
 import com.niit.collaborationback.model.Forum;
@@ -46,8 +49,8 @@ public class ApplicationContextConfig {
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 
-		dataSource.setUsername("COLLABORATION");
-		dataSource.setPassword("oracle123");
+		dataSource.setUsername("COLLAB");
+		dataSource.setPassword("Mohan1995");
 
 		return dataSource;
 	}
@@ -76,7 +79,8 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(Job.class);
 		sessionBuilder.addAnnotatedClass(Chat.class);
 		sessionBuilder.addAnnotatedClass(Friend.class);
-	
+		sessionBuilder.addAnnotatedClass(AppliedJobs.class);
+
 
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -125,4 +129,10 @@ public class ApplicationContextConfig {
 		return new FriendDAOImpl(sessionFactory);
 	}
 
+	@Autowired(required = true)
+	@Bean(name = "AppliedJobsDAO")
+	public AppliedJobsDAO getAppliedJobsDAO(SessionFactory sessionFactory) {
+		return new AppliedJobsDAOImpl(sessionFactory);
+	}
+	
 }
