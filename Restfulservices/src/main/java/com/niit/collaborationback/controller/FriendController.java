@@ -2,6 +2,8 @@ package com.niit.collaborationback.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationback.dao.FriendDAO;
 import com.niit.collaborationback.model.Friend;
+import com.niit.collaborationback.model.User;
 
 @RestController
 
 public class FriendController {
 	@Autowired
 	private FriendDAO friendDAO;
-	
+	@Autowired
+	private Friend friend;
 	public FriendDAO getFriendDAO() {
 		return friendDAO;
 	}
@@ -37,10 +41,10 @@ public class FriendController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@GetMapping("/friend/{friendId}")
+	@GetMapping("/friends/{friendId}")
 	public ResponseEntity getByFriendid(@PathVariable("friendId") int friendId) {
 
-		Friend friend = friendDAO.getByFid(friendId);
+		Friend friend = friendDAO.getByFriendId(friendId);
 		if (friend == null) {
 			return new ResponseEntity("No Friend found for ID " + friendId, HttpStatus.NOT_FOUND);
 		}
@@ -49,10 +53,25 @@ public class FriendController {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@GetMapping("/friend/{userId}")
+	public List<Friend> getByUser(@PathVariable("userId")int userId) {
+		System.out.println(userId);
+		return friendDAO.getByUser(userId);
+	}
+	
+	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/friend")
-	public ResponseEntity createFriend(@RequestBody Friend friend) {
+	public ResponseEntity createFriend(@RequestBody User friendUser,HttpSession session) {
 
-		friendDAO.create(friend);
+		User user = (User) session.getAttribute("user");   
+		friend.setUserId(user.getUserId());
+		friend.setUserName(user.getUserName());
+		friend.setStatus("R");
+		friend.setFriendId(friendUser.getUserId());
+		friend.setFriendName(friendUser.getUserName());
+		friend.setIsOnline("TRUE");
+	
+		friendDAO.save(friend);
 
 		return new ResponseEntity(friend, HttpStatus.OK);
 	}
@@ -60,7 +79,7 @@ public class FriendController {
 	@SuppressWarnings("unchecked")
 	@DeleteMapping("/friend/{friendId}")
 	public ResponseEntity deleteFriend(@PathVariable int friendId) {
-		Friend friend=friendDAO.getByFid(friendId);
+		Friend friend=friendDAO.getByFriendId(friendId);
  		if (friend==null) {
 			return new ResponseEntity("No Friend found for ID " + friendId, HttpStatus.NOT_FOUND);
 		}

@@ -1,5 +1,6 @@
 package com.niit.collaborationback.controller;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -19,10 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.niit.collaborationback.dao.BlogDAO;
 import com.niit.collaborationback.model.Blog;
 import com.niit.collaborationback.model.User;
-
-
-
-
 
 @RestController
 public class BlogController {
