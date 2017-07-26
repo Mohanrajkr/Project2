@@ -18,7 +18,7 @@ app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScop
     self.rejectBlog = rejectBlog;
     
     fetchAllBlogs();
-   // AcceptedBlogs();
+    AcceptedBlogs();
     reset();
    
     function fetchAllBlogs(){

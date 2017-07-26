@@ -9,7 +9,7 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
     return {
          
 		applyForJob: function(jobId) {
-                    return $http.post(BASE_URL+"/applyForJob/"+jobId)
+                    return $http.post(BASE_URL+"/appliedjobs/"+jobId)
                             .then(
                                     function(response){
                                         return response.data;

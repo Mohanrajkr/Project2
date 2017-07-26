@@ -27,8 +27,7 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q, $roo
 			function AcceptedBlogs() {
 				console.log("calling AcceptedBlogs ")
 
-				return $http.get(BASE_URL + '/acceptedBlog').then(
-						function(response) {
+				return $http.get(BASE_URL + '/acceptedBlog').then(function(response) {
 							console.log('response');
 							return response.data;
 							console.log(response)

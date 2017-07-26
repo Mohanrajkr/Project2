@@ -1,10 +1,185 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+.shape{    
+	border-style: solid; border-width: 0 70px 40px 0; float:right; height: 0px; width: 0px;
+	-ms-transform:rotate(360deg); /* IE 9 */
+	-o-transform: rotate(360deg);  /* Opera 10.5 */
+	-webkit-transform:rotate(360deg); /* Safari and Chrome */
+	transform:rotate(360deg);
+}
+.offer{
+	background:#fff; border:1px solid #ddd; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); margin: 15px 0; overflow:hidden;
+}
+.offer:hover {
+    -webkit-transform: scale(1.1); 
+    -moz-transform: scale(1.1); 
+    -ms-transform: scale(1.1); 
+    -o-transform: scale(1.1); 
+    transform:rotate scale(1.1); 
+    -webkit-transition: all 0.4s ease-in-out; 
+-moz-transition: all 0.4s ease-in-out; 
+-o-transition: all 0.4s ease-in-out;
+transition: all 0.4s ease-in-out;
+    }
+.shape {
+	border-color: rgba(255,255,255,0) #d9534f rgba(255,255,255,0) rgba(255,255,255,0);
+}
+.offer-radius{
+	border-radius:7px;
+}
+
+.offer-primary {	border-color: #428bca; }
+.offer-primary .shape{
+	border-color: transparent #428bca transparent transparent;
+}
+
+
+.shape-text{
+	color:#fff; font-size:12px; font-weight:bold; position:relative; right:-40px; top:2px; white-space: nowrap;
+	-ms-transform:rotate(30deg); /* IE 9 */
+	-o-transform: rotate(360deg);  /* Opera 10.5 */
+	-webkit-transform:rotate(30deg); /* Safari and Chrome */
+	transform:rotate(30deg);
+}	
+.offer-content{
+	padding:0 20px 10px;
+}
+@media (min-width: 487px) {
+  .container {
+    max-width: 750px;
+  }
+  .col-sm-6 {
+    width: 50%;
+  }
+}
+@media (min-width: 900px) {
+  .container {
+    max-width: 970px;
+  }
+  .col-md-4 {
+    width: 33.33333333333333%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+  .col-lg-3 {
+    width: 25%;
+  }
+  }
+}
+</style>
+<!-- <style type="text/css">
+
+.abc{
+padding-left: 1.5em;
+-moz-box-shadow: 0 0 10px #ccc; 
+-webkit-box-shadow: 0 0 10px #ccc; 
+box-shadow: 0 0 10px #ccc; 
+    background-color: #00BCD4;
+}
+
+a {
+    color: #ff8236;
+    text-decoration: none;
+}
+a:focus, a:hover {
+    color: #E91E63;
+    text-decoration: underline;
+}
+</style> -->
 </head>
 <body>
-homepage
+<div class="row">
+<div class="container" class="col-sm-3" ng-controller="BlogController as bc">
+	<h3>Blogs</h3>
+<div ng-init="bc.AcceptedBlogs()">
+
+<div class="abc" ng-repeat="bna in bc.blogsAccept">
+		
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+			<div class="offer offer-info">
+				<div class="shape">
+					<div class="shape-text">
+						blog							
+					</div>
+				</div>
+				<div class="offer-content">
+					<h3 class="lead">Title:{{bna.title}}</h3>						
+					<h6>Authored By:{{bna.userName}} </h6><h6>Created On:<span ng-bind="bna.timeStamp"></span></h6> 
+<h6>Status:{{bna.status}} </h6>
+<br>
+<a href="" ng-click="bc.adminGet(bna)"><input type="button" name="button"  value="Read More"/></a>
+
+				</div>
+			</div>
+		</div>
+	
+		</div>
+		</div>
+</div>
+
+<div class="container" class="col-sm-3"  ng-controller="ForumController as fcc">
+	<h3>Forums</h3>
+<div ng-init="fcc.AcceptedForums()">
+<div class="abc" ng-repeat="for in fcc.forumsAccept" >
+		
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+			<div class="offer offer-info">
+				<div class="shape">
+					<div class="shape-text">
+						forum							
+					</div>
+				</div>
+				<div class="offer-content">
+					<h3 class="lead">Title:{{for.forumName}}</h3>						
+					<h6>Authored By:{{bna.userName}} </h6><h6>Created On:<span ng-bind="bna.timeStamp"></span></h6> 
+<h6>Status:{{for.status}} </h6>
+<h6>Desc:{{for.forumContent}}</h6>
+<br>
+<a href="" ng-click="fcc.adminGet(for)"><input type="button" name="button"  value="Read More"/></a>
+
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+</div>
+
+<div class="container" class="col-sm-3"  ng-controller="JobController as jc">
+	<h3>Jobs</h3>
+<div ng-init="jc.getAllJobs()">
+<div class="abc" ng-repeat="jna in jc.jobs">
+		
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+			<div class="offer offer-info">
+				<div class="shape">
+					<div class="shape-text">
+						job							
+					</div>
+				</div>
+				<div class="offer-content">
+					<h3 class="lead">Title:{{jna.title}}</h3>						
+					<h6>Authored By:{{jna.companyName}} </h6><h6>Created On:<span ng-bind="jna.timeStamp"></span></h6>  
+<h6>Description:{{jna.description}} </h6>
+<h6>Status:{{jna.status}} </h6>
+<h4>Desc:{{jna.email}}</h4>
+<br>
+<a href="" ng-click="jc.get(jna)"><input type="button" name="button"  value="Apply for Job"/></a>
+
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+</div>
+
 </body>
 </html>

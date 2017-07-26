@@ -77,7 +77,14 @@ app.config(function($routeProvider) {
 		controllerAs : 'fc'
 	})
 	
+	 .when('/find', {
+		templateUrl : 'User/FriendRequest.html',
+		controller : 'UserController',
+		controllerAs : 'uc'
+		
+			
+	})
 	.otherwise({
-		redirectTo : '/login'
+		redirectTo : '/'
 	});
 });

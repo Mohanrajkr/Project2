@@ -1,46 +1,32 @@
 'use strict';
 
-app	.controller('JobController',['JobService','$location', '$rootScope',
-						function(JobService,  $location, $rootScope) {
+app	.controller('JobController',['JobService','$location', '$rootScope','$scope',
+						function(JobService,  $location, $rootScope, $scope) {
 							console.log("JobController...")
 							var self = this;
 
 							this.job = {jobId : '',title:'',companyName : '',qualification : '',email: '',status:''};
 							this.jobs = [];
 							
-							this.applyForJob = applyForJob
+                           self.appjob={jobId : '',title:'',companyName : '',qualification : '',email: '',status:''};
+							
+							this.appjobs=[];
+							
+							 self.get = get;
 
 							function applyForJob(jobId) {
 								console.log("applyForJob");
-								var currentUser = $rootScope.currentUser
-								console.log("currentUser.id:" + currentUser.id)
-								//if(currentUser) -> not null, not empty and defined
-								
-								if (typeof currentUser.id == 'undefined') 
-									{
-									   alert("Please login to apply for the job")
-	                                     console.log("User not logged in.  Can not apply for job")
-	                                     /*$location
-											.path('/login');*/
-									   return
-									
-									}
-								console.log("->userId :" + currentUser.id
-										+ "  applying for job:" + jobId)
-										
-										
-								JobService
-										.applyForJob(jobId)
-										.then(
-												function(data) {
-													self.job = data;
-													alert(self.job.errorMessage)
-												},
-												function(errResponse) {
-													console
-															.error('Error while applying for job request');
+								self.appjob.jobId=job.jobId;
+								console.log(self.appjob.jobId)
+								self.appjob.companyName=job.title;
+								self.appjob.userid=$rootScope.currentUser.userId;
+								self.appjob.username=$rootScope.currentUser.userName;
+								JobService.applyForJob(self.appjob).then(function(d) {
+													
+													console.log("working")
+												},function(errResponse) {  
+													console.error('Error while applying Jobs');
 												});
-
 							}
 
 							self.getMyAppliedJobs = function() {
@@ -154,9 +140,18 @@ app	.controller('JobController',['JobService','$location', '$rootScope',
 													console
 															.error('Error while fetching blog details');
 												});
-							}
-							;
+							};
 
+							function get(job){
+								$scope.jv=job;
+								console.log($scope.jv);
+								$rootScope.viewJob=$scope.jv;
+								console.log('viewJob')
+								$location.path("/viewjob");
+								
+								
+							};
+							
 							self.reset = function() {
 								console.log('resetting the Job');
 								this.job = {jobId : '',title:'',companyName : '',qualification : '',email: '',status:''};
