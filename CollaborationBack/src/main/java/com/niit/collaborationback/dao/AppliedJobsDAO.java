@@ -5,17 +5,17 @@ import java.util.List;
 import com.niit.collaborationback.model.AppliedJobs;
 
 public interface AppliedJobsDAO {
-public List<AppliedJobs>list();
+public List<AppliedJobs> getByJobId(int jobId);    
 	
-	public AppliedJobs saveOrUpdate(AppliedJobs jobs);
+	public List<AppliedJobs> getByUserName(String userName); 
 	
-	public List<AppliedJobs> getByEmail(String email);
+	public List<AppliedJobs> getByUserId(int userId);
 	
-	public  List<AppliedJobs> getByUserid(int userId);
+	public void saveOrUpdate(AppliedJobs ajob);
+
+	public AppliedJobs getByAJobId(int jobId);	
 	
-	public AppliedJobs getByTitle(String title);
-	
-	public AppliedJobs getByJobid(int jobId);
-	
-	public List<AppliedJobs>getMyAppliedJobs(String email);
+	public void delete(int id);
+
+	public List<AppliedJobs> list();
 }

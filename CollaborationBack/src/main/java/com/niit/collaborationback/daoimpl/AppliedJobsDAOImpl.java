@@ -2,9 +2,8 @@ package com.niit.collaborationback.daoimpl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 
-import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,51 +16,61 @@ public class AppliedJobsDAOImpl implements AppliedJobsDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-
-	public AppliedJobsDAOImpl(SessionFactory sessionFactory) {
-		
-		this.sessionFactory = sessionFactory;
+	public AppliedJobsDAOImpl(SessionFactory sessionFactory)
+	{
+		this.sessionFactory=sessionFactory;
 	}
 	@SuppressWarnings("unchecked")
-	@Transactional
 	public List<AppliedJobs> list() {
-		List<AppliedJobs> listAjob = sessionFactory.getCurrentSession().createQuery("from AppliedJobs").list();
-		return listAjob;
+		return sessionFactory.getCurrentSession().createQuery("from AppliedJobs").list();
 	}
-	@Transactional
-	public AppliedJobs saveOrUpdate(AppliedJobs jobs) {
-		sessionFactory.getCurrentSession().saveOrUpdate(jobs);
-		return jobs;
-	}
-	@Transactional
-	public List<AppliedJobs> getByEmail(String email) {
-		String hql = "from AppliedJobs where email ='"+ email +"'";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		
-		return query.list();
-	}
-	@Transactional
-	public List<AppliedJobs> getByUserid(int userid) {
-		String hql = "from AppliedJobs where userid ='"+ userid +"'";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		return query.list();
-	}
-	@Transactional
-	public AppliedJobs getByTitle(String title) {
-		AppliedJobs Ajob =  (AppliedJobs)sessionFactory.getCurrentSession().get(AppliedJobs.class, title);
-		return Ajob;
-	}
-	@Transactional
-	public AppliedJobs getByJobid(int jobId) {
-		AppliedJobs Jobid = (AppliedJobs) sessionFactory.getCurrentSession().get(AppliedJobs.class, jobId);
 
-		return  Jobid;
-	}
-	@Transactional
-	public List<AppliedJobs> getMyAppliedJobs(String email) {
-		String hql = "from AppliedJobs where email ='"+ email +"'";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	public List<AppliedJobs> getByJobId(int jobId) {
+		Session session=sessionFactory.openSession();
 		
-		return query.list();
+		String hql = "from AppliedJobs where jobId ='" + jobId + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<AppliedJobs> ajobs=query.list();
+		session.close();
+		return ajobs;
+	}
+
+	public List<AppliedJobs> getByUserName(String userName) {
+		Session session=sessionFactory.openSession();
+		String hql = "from AppliedJobs where userName ='" + userName + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	
+		@SuppressWarnings("unchecked")
+		List<AppliedJobs> uemails=query.list();
+		session.close();
+		return uemails;
+	}
+
+	public void saveOrUpdate(AppliedJobs ajob) {
+		sessionFactory.getCurrentSession().saveOrUpdate(ajob);
+		
+	}
+
+	public AppliedJobs getByAJobId(int jobId) {   
+		AppliedJobs ajobListByID = (AppliedJobs) sessionFactory.getCurrentSession().get(AppliedJobs.class, jobId);
+
+		return ajobListByID;
+	}
+	public void delete(int id) {
+		AppliedJobs ajobDelete = new AppliedJobs();
+		//ajobDelete.setId(id);
+		sessionFactory.getCurrentSession().delete(ajobDelete);
+		
+	}
+	public List<AppliedJobs> getByUserId(int userId) {
+		
+		Session session=sessionFactory.openSession();
+		String hql = "from AppliedJobs where userId ='" + userId + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<AppliedJobs> uemails=query.list();
+		session.close();
+		return uemails;
 	}
 }
