@@ -24,8 +24,10 @@ import com.niit.collaborationback.model.User;
 public class FriendController {
 	@Autowired
 	private FriendDAO friendDAO;
+	
 	@Autowired
 	private Friend friend;
+	
 	public FriendDAO getFriendDAO() {
 		return friendDAO;
 	}
@@ -33,36 +35,42 @@ public class FriendController {
 	public void setFriendDAO(FriendDAO friendDAO) {
 		this.friendDAO = friendDAO;
 	}
-
+		
 	@GetMapping("/friend")
-	public ResponseEntity<List<Friend>> getFriend() {
+	public ResponseEntity<List<Friend>> getFriends() {
 		List<Friend> listfriend = friendDAO.list();
 		return new ResponseEntity<List<Friend>>(listfriend, HttpStatus.OK);
 	}
 	
-	@SuppressWarnings("unchecked")
-	@GetMapping("/friends/{friendId}")
-	public ResponseEntity getByFriendid(@PathVariable("friendId") int friendId) {
-
-		Friend friend = friendDAO.getByFriendId(friendId);
-		if (friend == null) {
-			return new ResponseEntity("No Friend found for ID " + friendId, HttpStatus.NOT_FOUND);
-		}
-
-		return new ResponseEntity(friend, HttpStatus.OK);
-	}
-	
-	@SuppressWarnings("unchecked")
 	@GetMapping("/friend/{userId}")
 	public List<Friend> getByUser(@PathVariable("userId")int userId) {
-		System.out.println(userId);
 		return friendDAO.getByUser(userId);
 	}
 	
-	@SuppressWarnings("unchecked")
-	@PostMapping(value = "/friend")
-	public ResponseEntity createFriend(@RequestBody User friendUser,HttpSession session) {
+	@GetMapping("/friends1/{userName}")  
+	public List<Friend> getByName(@PathVariable("userName") String userName) {
+		return friendDAO.getByName(userName);
+		
+	}
 
+	@GetMapping("/friendsAccepted/{friendName}")  
+	public List<Friend> getByFriendAccepted(@PathVariable("friendName") String friendName) {
+		return friendDAO.getByFriendAccepted(friendName);
+		
+	}
+	@GetMapping("/friendsAccepted1/{name}")  
+	public List<Friend> getByFriendAccepted1(@PathVariable("name") String name) {
+		
+		
+		List<Friend> friendList1 = friendDAO.getByFriendAccepted1(name);
+		
+		return friendList1;
+		
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@PostMapping("/friends")
+	public ResponseEntity createFriend(@RequestBody User friendUser, HttpSession session) {
 		User user = (User) session.getAttribute("user");   
 		friend.setUserId(user.getUserId());
 		friend.setUserName(user.getUserName());
@@ -76,27 +84,24 @@ public class FriendController {
 		return new ResponseEntity(friend, HttpStatus.OK);
 	}
 	
-	@SuppressWarnings("unchecked")
-	@DeleteMapping("/friend/{friendId}")
-	public ResponseEntity deleteFriend(@PathVariable int friendId) {
-		Friend friend=friendDAO.getByFriendId(friendId);
- 		if (friend==null) {
-			return new ResponseEntity("No Friend found for ID " + friendId, HttpStatus.NOT_FOUND);
-		}
- 		friendDAO.delete(friendId);
-		return new ResponseEntity(friendId, HttpStatus.OK);
-   }
-	
-	@SuppressWarnings("unchecked")
-	@PutMapping("/friend/{friendId}")
-	public ResponseEntity saveorupdateUser(@PathVariable int friendId, @RequestBody Friend friend) {
-
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@PutMapping("/friendAccept")
+	public ResponseEntity acceptFriend(@RequestBody Friend friend){
+		
+		friend.setStatus("A");
 		friend = friendDAO.saveOrUpdate(friend);
-		if (null == friend) {
-			return new ResponseEntity("No Friend found for ID " + friendId, HttpStatus.NOT_FOUND);
-		}
-
+		
 		return new ResponseEntity(friend, HttpStatus.OK);
 	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@DeleteMapping("/friends/{friendid}")
+	public ResponseEntity deleteFriend(@PathVariable int friendid) {
+		Friend friend=friendDAO.getByFriendId(friendid);
+ 		if (friend==null) {
+			return new ResponseEntity("No friend found for ID " + friendid, HttpStatus.NOT_FOUND);
+		}
+ 		friendDAO.delete(friendid);
+		return new ResponseEntity(friendid, HttpStatus.OK);
 
+	}
 }
