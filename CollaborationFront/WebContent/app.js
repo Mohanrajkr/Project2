@@ -81,9 +81,14 @@ app.config(function($routeProvider) {
 		templateUrl : 'User/FriendRequest.html',
 		controller : 'UserController',
 		controllerAs : 'uc'
-		
-			
 	})
+	
+	.when('/chat',{
+		templateUrl:'Chat/Chat.html',
+		controller:'ChatController'
+	})
+	
+	
 	.otherwise({
 		redirectTo : '/'
 	});

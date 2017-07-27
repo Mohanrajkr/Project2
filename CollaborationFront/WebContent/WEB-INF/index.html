@@ -26,8 +26,13 @@
 <script type="text/javascript" src="Forum/ForumController.js"></script>
 <script type="text/javascript" src="Forum/ForumService.js"></script>
 <script type="text/javascript" src="Friend/FriendService.js"></script>
+<script type="text/javascript" src="Chat/ChatController.js"></script>
+<script type="text/javascript" src="Chat/ChatService.js"></script>
 
 
+ <script src="js/sockjs.js"></script>
+    <script src="js/stomp.js"></script>
+    
 
 <title>Insert title here</title>
 
@@ -137,13 +142,11 @@ box-shadow: 0 0 6px 3px rgba(0,0,0,.35); }
               </ul>
             </li>
             
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Friend<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#!viewforum">View</a></li>
-                <li><a href="#!find">Add</a></li>
-                
-              </ul>
+             <li>
+              <a href="#!find" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Friend<span class="caret"></span></a>
+            </li>
+            <li>
+              <a href="#!chat" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chat<span class="caret"></span></a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

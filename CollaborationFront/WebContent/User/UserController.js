@@ -229,6 +229,59 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 													console.error('Error while creating friend..');
 												});
 							};
+							
+							self.requestedFriend = function() {
+								$rootScope.loginUser =$rootScope.currentUser;
+								console.log("GetAllRequestedFriends...")
+								FriendService.fetchRequestedfriends($rootScope.loginUser.userName).then(function(d) {
+													self.reqFriend = d;
+													
+													console.log(self.reqFriend)
+												},function(errResponse) {  
+													console.error('Error while fetching By Friend Name');
+												});
+							};
+							
+							self.acceptFriend = function(reqFriend) {
+								
+								
+								console.log('accept the friend request')
+								FriendService.updateFriendReq(reqFriend);
+								
+								console.log('Accepted')
+							$location.path("/find")
+							
+							
+						};
+						
+						self.AcceptedFriendCurrentUser = function() {
+							$rootScope.loginUser =$rootScope.currentUser;
+							console.log("GetAllAcceptedFriendCurrentUser...")
+							FriendService.fetchAcceptedFriends($rootScope.loginUser.userName).then(function(d) {
+												self.accFriend = d;													
+												console.log(self.accFriend)
+												FriendService.fetchAcceptedFriends1($rootScope.loginUser.userName).then(function(d) {
+													self.accFriend1 = d;													
+													console.log(self.accFriend)
+														
+												},function(errResponse) {  
+													console.error('Error while fetching Accepted list');
+												});
+												
+												
+											},function(errResponse) {  
+												console.error('Error while fetching Accepted list');
+											});
+						};
+						self.deleteFriendRequest = function(req){
+					    	FriendService.deleteFriendRequest(req.id).then(function(d) {
+								self.deleteFriendRequestid = d;		    			
+								console.log(self.deleteFriendRequestid)
+					    			$location.path("/find")
+					    	}, function(errResponse){
+					                console.error('Error while deleting FriendRequest');
+					            });
+					    };
 							self.reset = function() {
 								self.user = {userId : '',userName : '',email :'',password : '',mobileNumber : '',address : '',role : ''};
 
