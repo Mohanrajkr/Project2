@@ -16,14 +16,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.collaborationback.dao.AppliedJobsDAO;
 import com.niit.collaborationback.dao.BlogDAO;
-import com.niit.collaborationback.dao.ChatDAO;
 import com.niit.collaborationback.dao.ForumDAO;
 import com.niit.collaborationback.dao.FriendDAO;
 import com.niit.collaborationback.dao.JobDAO;
 import com.niit.collaborationback.dao.UserDAO;
 import com.niit.collaborationback.daoimpl.AppliedJobsDAOImpl;
 import com.niit.collaborationback.daoimpl.BlogDAOImpl;
-import com.niit.collaborationback.daoimpl.ChatDAOImpl;
 import com.niit.collaborationback.daoimpl.ForumDAOImpl;
 import com.niit.collaborationback.daoimpl.FriendDAOImpl;
 import com.niit.collaborationback.daoimpl.JobDAOImpl;
@@ -117,11 +115,7 @@ public class ApplicationContextConfig {
 		return new JobDAOImpl(sessionFactory);
 	}
 	
-	@Autowired(required = true)
-	@Bean(name = "ChatDAO")
-	public ChatDAO getChatDAO(SessionFactory sessionFactory) {
-		return new ChatDAOImpl(sessionFactory);
-	}
+	
 	
 	@Autowired(required = true)
 	@Bean(name = "FriendDAO")

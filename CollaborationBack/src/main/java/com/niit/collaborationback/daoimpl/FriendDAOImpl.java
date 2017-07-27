@@ -47,7 +47,7 @@ public class FriendDAOImpl implements FriendDAO {
 public List<Friend> getByName(String userName) {
 	Session session=sessionFactory.openSession();
 	
-	String hql = "from Friend where userName ='" + userName + "'";
+	String hql = "from Friend where friendName ='" + userName + "' and status="+ "'R'";
 	org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 	@SuppressWarnings("unchecked")
 	List<Friend> frien=query.list();
@@ -72,8 +72,8 @@ public List<Friend> getByFriendName(String userName) {
 		sessionFactory.getCurrentSession().save(friend);
 	}
 @Transactional
-public List<Friend> getByFriendAccepted(String friendname){
-	String hql = "from Friend where friendname =" + "'" + friendname + "' and status = " + "'A'";
+public List<Friend> getByFriendAccepted(String friendName){
+	String hql = "from Friend where friendName =" + "'" + friendName + "' and status = " + "'A'";
 	org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 	@SuppressWarnings("unchecked")
 	List<Friend> listFriend = (List<Friend>) query.list();
@@ -112,4 +112,14 @@ public List<Friend> getByFriendAccepted(String friendname){
 		return friendListByID;
 
 	}
+	
+	@Transactional
+	public List<Friend> getByFriendAccepted1(String name) {
+		String hql = "from Friend where userName =" + "'" + name + "' and status = " + "'A'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Friend> listFriend = (List<Friend>) query.list();
+		return listFriend;
+	}
+	
 }
