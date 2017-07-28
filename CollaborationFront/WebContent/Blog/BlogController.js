@@ -59,7 +59,7 @@ app.controller('BlogController',['$scope', '$location', 'BlogService','$rootScop
 		console.log("createBlog...")
 		BlogService.createBlog(blog).then(function(d) {
 			alert("Thank you for creating message")
-			$location.path("/login")
+			$location.path("/")
 		}, function(errResponse) {
 			console.error('Error while creating Blog.');
 		});

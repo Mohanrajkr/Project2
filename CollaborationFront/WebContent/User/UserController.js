@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('UserController',['$scope','UserService','FriendService','$location','$rootScope','$cookieStore','$http','$cookies',
-						function($scope, UserService,FriendService, $location, $rootScope,$cookieStore, $http,$cookies) {
+						function($scope, UserService,FriendService, $location, $rootScope, $cookieStore, $http, $cookies) {
 							console.log("UserController...")
 							var i = 0;
 							var j = 0;
